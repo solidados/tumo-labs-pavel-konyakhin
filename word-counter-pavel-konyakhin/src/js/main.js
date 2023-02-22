@@ -10,3 +10,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	calcButton.addEventListener("click", getTotalLength);
 });
+// new comment
