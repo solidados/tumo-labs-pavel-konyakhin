@@ -1,3 +1,12 @@
-const arr = [1, 2, 3, 4, 5, 6];
-arr.push(7);
-console.log(arr);
+document.addEventListener("DOMContentLoaded", () => {
+	"use strict";
+
+	const entryField = document.querySelector(".main__input");
+	const resultField = document.querySelector(".main__table-list");
+	const calcButton = document.querySelector(".calculate__btn");
+	//   const targetElement = event.target;
+
+	const getTotalLength = () => console.log(entryField.value.length);
+
+	calcButton.addEventListener("click", getTotalLength);
+});
