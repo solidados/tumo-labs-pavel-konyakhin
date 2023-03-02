@@ -1,5 +1,13 @@
+/* ---> count variables <--- */
 const entryField = document.querySelector(".main__input");
 const calcButton = document.querySelector(".calculate__btn");
+
+/* ----> change colors <---- */
+const header = document.querySelector(".header");
+const input = document.querySelector(".main__input");
+const mainBtn = document.querySelector(".calculate__btn");
+const tableItems = document.querySelectorAll(".main__table-list-item");
+const footer = document.querySelector(".footer");
 
 function wordsCount(str) {
 	let arr = new Array();
@@ -76,13 +84,6 @@ function appCount() {
 	sentenceCount(entry);
 	setColor();
 }
-
-/* ----> change colors <---- */
-const header = document.querySelector(".header");
-const input = document.querySelector(".main__input");
-const mainBtn = document.querySelector(".calculate__btn");
-const tableItems = document.querySelectorAll(".main__table-list-item");
-const footer = document.querySelector(".footer");
 
 const setColor = () => {
 	const randomColor = Math.floor(Math.random() * 16777215).toString(16);
