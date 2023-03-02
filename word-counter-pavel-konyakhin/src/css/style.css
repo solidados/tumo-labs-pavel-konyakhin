@@ -161,11 +161,15 @@ p {
   padding: 20px 0;
   font-size: 20px;
   line-height: 1.2em;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .main__input {
   padding: 12px;
   margin-bottom: 15px;
-  outline: 1px solid #2374ab;
+  border: 1px solid #2374ab;
   border-radius: 5px;
   font-size: 16px;
 }
@@ -185,6 +189,12 @@ p {
 .main .calculate__btn:hover {
   background-color: #2374ab;
   color: #fff;
+}
+.main__table {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 .main__table-list {
   display: grid;
