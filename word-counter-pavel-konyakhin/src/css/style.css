@@ -169,7 +169,7 @@ p {
 .main__input {
   padding: 12px;
   margin-bottom: 15px;
-  outline: 1px solid #2374ab;
+  border: 1px solid #2374ab;
   border-radius: 5px;
   font-size: 16px;
 }

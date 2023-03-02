@@ -2,10 +2,9 @@ const entryField = document.querySelector(".main__input");
 const calcButton = document.querySelector(".calculate__btn");
 
 function wordsCount(str) {
-	// let arr = str.split(" ");
 	let arr = new Array();
 	for (let el of str.split(" ")) {
-		if (Number.isInteger(Number(el))) {
+		if (Number.isInteger(Number(el)) && el.match(/\W/g)) {
 			continue;
 		} else {
 			arr.push(el);
@@ -35,6 +34,7 @@ function numbersCount(str) {
 
 function symbolsCount(str) {
 	let result = str.match(/\W/g);
+
 	let symbArr = [];
 	for (let el of result) {
 		if (el === " ") {
@@ -61,7 +61,6 @@ const sentenceCount = (str) => {
 	sentenceArr.length === 0
 		? (document.getElementById("sentences").innerText = 0)
 		: (document.getElementById("sentences").innerText = sentenceArr.length);
-	console.log(sentenceArr);
 };
 
 // ! --- overview the results ---
@@ -77,13 +76,20 @@ function appCount() {
 	sentenceCount(entry);
 }
 
-const setBg = () => {
+const header = document.querySelector(".header");
+const input = document.querySelector(".main__input");
+const mainBtn = document.querySelector(".calculate__btn");
+const tableItems = document.getElementsByClassName("main__table-list-item");
+const footer = document.querySelector(".footer");
+
+const setColor = () => {
 	const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-	document.body.style.backgroundColor = "#" + randomColor;
-	color.innerHTML = "#" + randomColor;
+	header.style.backgroundColor = `#${randomColor}`;
+	input.style.borderColor = `#${randomColor}`;
+	mainBtn.style.borderColor = `#${randomColor}`;
+	tableItems.style.backgroundColor = `#${randomColor}`;
+	footer.style.backgroundColor = `#${randomColor}`;
 };
 
-genNew.addEventListener("click", setBg);
-setBg();
-
 calcButton.addEventListener("click", appCount);
+calcButton.addEventListener("click", setColor);
