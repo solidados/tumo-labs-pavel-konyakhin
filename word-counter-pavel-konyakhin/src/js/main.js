@@ -1,5 +1,13 @@
+/* ---> count variables <--- */
 const entryField = document.querySelector(".main__input");
 const calcButton = document.querySelector(".calculate__btn");
+
+/* ----> change colors <---- */
+const header = document.querySelector(".header");
+const input = document.querySelector(".main__input");
+const mainBtn = document.querySelector(".calculate__btn");
+const tableItems = document.querySelectorAll(".main__table-list-item");
+const footer = document.querySelector(".footer");
 
 function wordsCount(str) {
 	let arr = new Array();
@@ -74,22 +82,18 @@ function appCount() {
 	numbersCount(entry);
 	symbolsCount(entry);
 	sentenceCount(entry);
+	setColor();
 }
-
-const header = document.querySelector(".header");
-const input = document.querySelector(".main__input");
-const mainBtn = document.querySelector(".calculate__btn");
-const tableItems = document.getElementsByClassName("main__table-list-item");
-const footer = document.querySelector(".footer");
 
 const setColor = () => {
 	const randomColor = Math.floor(Math.random() * 16777215).toString(16);
 	header.style.backgroundColor = `#${randomColor}`;
 	input.style.borderColor = `#${randomColor}`;
 	mainBtn.style.borderColor = `#${randomColor}`;
-	tableItems.style.backgroundColor = `#${randomColor}`;
 	footer.style.backgroundColor = `#${randomColor}`;
+	tableItems.forEach((el) => {
+		el.style.backgroundColor = `#${randomColor}`;
+	});
 };
 
 calcButton.addEventListener("click", appCount);
-calcButton.addEventListener("click", setColor);
