@@ -33,10 +33,7 @@ window.addEventListener("load", getLocalStorage);
 function wordsCount(str) {
 	let arr = new Array();
 	for (let el of str.split(" ")) {
-		if (
-			Number.isInteger(Number(el)) &&
-			el.match(/[^a-zA-Zа-яёЁА-Я0-9\n\t\r\v\f\s]/g)
-		) {
+		if (Number.isInteger(Number(el))) {
 			continue;
 		} else {
 			arr.push(el);
@@ -68,6 +65,10 @@ function numbersCount(str) {
 function symbolsCount(str) {
 	// let result = str.match(/\W+/g);
 	let result = str.match(/[^a-zA-Zа-яёЁА-Я0-9\n\t\r\v\f\s]/g);
+	if (result === null) {
+		document.getElementById("symbols").innerText = 0;
+		return;
+	}
 
 	let symbArr = [];
 	for (let el of result) {
@@ -131,7 +132,7 @@ function appCount() {
 	numbersCount(entry);
 	symbolsCount(entry);
 	sentenceCount(entry);
-	setColor();
+	// setColor();
 }
 
 const setColor = () => {
@@ -146,3 +147,4 @@ const setColor = () => {
 };
 
 calcButton.addEventListener("click", appCount);
+calcButton.addEventListener("click", setColor);
