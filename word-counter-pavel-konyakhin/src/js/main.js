@@ -9,10 +9,34 @@ const mainBtn = document.querySelector(".calculate__btn");
 const tableItems = document.querySelectorAll(".main__table-list-item");
 const footer = document.querySelector(".footer");
 
+/* ---> set time <---- */
+const timeElem = document.querySelector(".time");
+const dateElem = document.querySelector(".date");
+
+/* ---> save entry on reload <--- */
+const entry = document.querySelector("textarea.main__input");
+
+/* ---> save entry on reload <--- */
+function setLocalStorage() {
+	localStorage.setItem("entry", entry.value);
+}
+window.addEventListener("beforeunload", setLocalStorage);
+
+function getLocalStorage() {
+	if (localStorage.getItem("entry")) {
+		entry.value = localStorage.getItem("entry");
+	}
+}
+window.addEventListener("load", getLocalStorage);
+
+/* ---> Main Counter <--- */
 function wordsCount(str) {
 	let arr = new Array();
 	for (let el of str.split(" ")) {
-		if (Number.isInteger(Number(el)) && el.match(/\W/g)) {
+		if (
+			Number.isInteger(Number(el)) &&
+			el.match(/[^a-zA-Zа-яёЁА-Я0-9\n\t\r\v\f\s]/g)
+		) {
 			continue;
 		} else {
 			arr.push(el);
@@ -28,6 +52,7 @@ function charactersCount(str) {
 
 function spacesCount(str) {
 	let result = str.match(/\s/g);
+
 	result === null
 		? (document.getElementById("spaces").innerText = 0)
 		: (document.getElementById("spaces").innerText = result.length);
@@ -41,7 +66,8 @@ function numbersCount(str) {
 }
 
 function symbolsCount(str) {
-	let result = str.match(/\W/g);
+	// let result = str.match(/\W+/g);
+	let result = str.match(/[^a-zA-Zа-яёЁА-Я0-9\n\t\r\v\f\s]/g);
 
 	let symbArr = [];
 	for (let el of result) {
@@ -70,6 +96,29 @@ const sentenceCount = (str) => {
 		? (document.getElementById("sentences").innerText = 0)
 		: (document.getElementById("sentences").innerText = sentenceArr.length);
 };
+
+/* ---> set time <---- */
+function showTime() {
+	const date = new Date();
+	const options = { hour12: false };
+	const currentTime = date.toLocaleTimeString([], options);
+	timeElem.textContent = currentTime;
+
+	setTimeout(showTime, 1000);
+	function showDate() {
+		const date = new Date();
+		const options = {
+			day: "2-digit",
+			month: "2-digit",
+			year: "numeric",
+			timeZone: "UTC",
+		};
+		const currentDate = date.toLocaleDateString("en-GB", options);
+		dateElem.textContent = currentDate;
+	}
+	showDate();
+}
+showTime();
 
 // ! --- overview the results ---
 
